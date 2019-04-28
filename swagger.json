@@ -1,0 +1,68 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Tesseract API",
+    "description": "A simple API to pass files to tesseract over HTTP"
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/convert": {
+      "post": {
+        "description": "Converts the given image to text",
+        "operationId": "convert",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file",
+            "type": "file",
+            "required": true,
+            "description": "The file to upload"
+          },
+          {
+            "in": "formData",
+            "name": "languages",
+            "type": "string",
+            "required": false,
+            "description": "The languages to use"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "pet response",
+            "schema": {
+              "$ref": "#/definitions/ParsedImage"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ParsedImage": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  }
+}
