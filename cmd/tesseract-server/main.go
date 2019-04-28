@@ -4,6 +4,7 @@ package main
 
 import (
 	"github.com/demeyerthom/tesseract-api/internal"
+	"github.com/demeyerthom/tesseract-api/internal/operations"
 	"log"
 	"os"
 
@@ -21,7 +22,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	api := internal.NewTesseractAPI(swaggerSpec)
+	api := operations.NewTesseractAPI(swaggerSpec)
 	server := internal.NewServer(api)
 	defer server.Shutdown()
 
